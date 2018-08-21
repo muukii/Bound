@@ -14,7 +14,6 @@
 		4B294BB4212AD632007DC18D /* BasicModalPresentationTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294B9B212AD632007DC18D /* BasicModalPresentationTransitionController.swift */; };
 		4B294BB5212AD632007DC18D /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294B9D212AD632007DC18D /* ObjectStore.swift */; };
 		4B294BB6212AD632007DC18D /* AutomatedPushTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294B9E212AD632007DC18D /* AutomatedPushTransitionController.swift */; };
-		4B294BB7212AD632007DC18D /* ViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294B9F212AD632007DC18D /* ViewProvider.swift */; };
 		4B294BB8212AD632007DC18D /* AutomatedPopTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BA0212AD632007DC18D /* AutomatedPopTransitionController.swift */; };
 		4B294BB9212AD632007DC18D /* AutomatedPresentationTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BA1212AD632007DC18D /* AutomatedPresentationTransitionController.swift */; };
 		4B294BBA212AD632007DC18D /* AutomatedDismissalTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BA2212AD632007DC18D /* AutomatedDismissalTransitionController.swift */; };
@@ -77,7 +76,6 @@
 		4B294B9B212AD632007DC18D /* BasicModalPresentationTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicModalPresentationTransitionController.swift; sourceTree = "<group>"; };
 		4B294B9D212AD632007DC18D /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		4B294B9E212AD632007DC18D /* AutomatedPushTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatedPushTransitionController.swift; sourceTree = "<group>"; };
-		4B294B9F212AD632007DC18D /* ViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProvider.swift; sourceTree = "<group>"; };
 		4B294BA0212AD632007DC18D /* AutomatedPopTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatedPopTransitionController.swift; sourceTree = "<group>"; };
 		4B294BA1212AD632007DC18D /* AutomatedPresentationTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatedPresentationTransitionController.swift; sourceTree = "<group>"; };
 		4B294BA2212AD632007DC18D /* AutomatedDismissalTransitionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatedDismissalTransitionController.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 			children = (
 				4B294B9D212AD632007DC18D /* ObjectStore.swift */,
 				4B294B9E212AD632007DC18D /* AutomatedPushTransitionController.swift */,
-				4B294B9F212AD632007DC18D /* ViewProvider.swift */,
 				4B294BA0212AD632007DC18D /* AutomatedPopTransitionController.swift */,
 				4B294BA1212AD632007DC18D /* AutomatedPresentationTransitionController.swift */,
 				4B294BA2212AD632007DC18D /* AutomatedDismissalTransitionController.swift */,
@@ -372,7 +369,6 @@
 				4B294BBC212AD632007DC18D /* NavigationTransitionControllerBase.swift in Sources */,
 				4B294BBF212AD632007DC18D /* PropertyAnimatorBuilder.swift in Sources */,
 				4B294BBA212AD632007DC18D /* AutomatedDismissalTransitionController.swift in Sources */,
-				4B294BB7212AD632007DC18D /* ViewProvider.swift in Sources */,
 				4B294BB4212AD632007DC18D /* BasicModalPresentationTransitionController.swift in Sources */,
 				4B294BB9212AD632007DC18D /* AutomatedPresentationTransitionController.swift in Sources */,
 				4B294BC1212AD632007DC18D /* SnapshotProvider.swift in Sources */,

@@ -51,7 +51,10 @@ public final class BasicNavigationTransitionController : NSObject, UIViewControl
 
     case .pop:
 
+      let toView = transitionContext.view(forKey: .to)!
       let fromView = transitionContext.view(forKey: .from)!
+
+      transitionContext.containerView.insertSubview(toView, at: 0)
 
       UIView.animate(
         withDuration: 0.5,

@@ -15,10 +15,10 @@ open class AutomatedTransitionControllerBase : NSObject {
 
   let transitionGroupFactory: TransitionGroupFactory
   let alongsideTransitionGroupFactory: TransitionGroupFactory?
-  let fallbackTransitionController: UIViewControllerAnimatedTransitioning?
+  let fallbackTransitionController: UIViewControllerAnimatedTransitioning
 
   public init(
-    fallbackTransitionController: UIViewControllerAnimatedTransitioning? = nil,
+    fallbackTransitionController: UIViewControllerAnimatedTransitioning,
     transitionGroupFactory: @escaping TransitionGroupFactory,
     alongsideTransitionGroupFactory: TransitionGroupFactory? = nil
     ) {

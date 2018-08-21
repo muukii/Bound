@@ -11,6 +11,19 @@ import UIKit
 @available(iOS 10, *)
 public final class AutomatedPopTransitionController : AutomatedTransitionControllerBase, UIViewControllerAnimatedTransitioning {
 
+  public override init(
+    fallbackTransitionController: UIViewControllerAnimatedTransitioning = BasicNavigationTransitionController(operation: .pop),
+    transitionGroupFactory: @escaping TransitionGroupFactory,
+    alongsideTransitionGroupFactory: TransitionGroupFactory? = nil
+    ) {
+
+    super.init(
+      fallbackTransitionController: fallbackTransitionController,
+      transitionGroupFactory: transitionGroupFactory,
+      alongsideTransitionGroupFactory: alongsideTransitionGroupFactory
+    )
+  }
+
   public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return 0
   }
@@ -50,7 +63,7 @@ public final class AutomatedPopTransitionController : AutomatedTransitionControl
     }
 
     animator.addErrorHandler { (error) in
-      self.fallbackTransitionController?.animateTransition(using: transitionContext)
+      self.fallbackTransitionController.animateTransition(using: transitionContext)
     }
 
     animator.run(in: transitionContext)

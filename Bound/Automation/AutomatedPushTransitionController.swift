@@ -11,6 +11,19 @@ import UIKit
 @available(iOS 10, *)
 public final class AutomatedPushTransitionController : AutomatedTransitionControllerBase, UIViewControllerAnimatedTransitioning {
 
+  public override init(
+    fallbackTransitionController: UIViewControllerAnimatedTransitioning = BasicNavigationTransitionController(operation: .push),
+    transitionGroupFactory: @escaping TransitionGroupFactory,
+    alongsideTransitionGroupFactory: TransitionGroupFactory? = nil
+    ) {
+
+    super.init(
+      fallbackTransitionController: fallbackTransitionController,
+      transitionGroupFactory: transitionGroupFactory,
+      alongsideTransitionGroupFactory: alongsideTransitionGroupFactory
+    )
+  }
+
   public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return 0
   }
@@ -49,7 +62,7 @@ public final class AutomatedPushTransitionController : AutomatedTransitionContro
     }
 
     animator.addErrorHandler { (error) in
-      self.fallbackTransitionController?.animateTransition(using: transitionContext)
+      self.fallbackTransitionController.animateTransition(using: transitionContext)
     }
 
     animator.run(in: transitionContext)
