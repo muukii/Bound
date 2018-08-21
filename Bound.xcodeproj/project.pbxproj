@@ -39,6 +39,8 @@
 		4B34FE2F212AD6ED0048234D /* MatchingTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B34FE2A212AD6EC0048234D /* MatchingTransitionViewController.swift */; };
 		4B574F11212AD7D6005DCFBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B574F10212AD7D6005DCFBE /* AppDelegate.swift */; };
 		4B574F14212AD867005DCFBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B574F12212AD867005DCFBE /* Main.storyboard */; };
+		4B810B03212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B810B02212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift */; };
+		4B810B05212CAD35005EA7B1 /* ViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B810B04212CAD35005EA7B1 /* ViewControllerBase.swift */; };
 		4B8FBFA8212AD3900097DB6B /* Bound.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B8FBFA6212AD3900097DB6B /* Bound.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,9 @@
 		4B34FE2A212AD6EC0048234D /* MatchingTransitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingTransitionViewController.swift; sourceTree = "<group>"; };
 		4B574F10212AD7D6005DCFBE /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B574F13212AD867005DCFBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4B810AFF212CA1F8005EA7B1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4B810B02212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InViewBasicTransitionViewController.swift; sourceTree = "<group>"; };
+		4B810B04212CAD35005EA7B1 /* ViewControllerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerBase.swift; sourceTree = "<group>"; };
 		4B8FBFA3212AD3900097DB6B /* Bound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B8FBFA6212AD3900097DB6B /* Bound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bound.h; sourceTree = "<group>"; };
 		4B8FBFA7212AD3900097DB6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +131,8 @@
 		4B294B54212AD44C007DC18D /* Bound-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				4B810B04212CAD35005EA7B1 /* ViewControllerBase.swift */,
+				4B810B00212CACF9005EA7B1 /* InView */,
 				4B574F10212AD7D6005DCFBE /* AppDelegate.swift */,
 				4B294B66212AD468007DC18D /* ViewController.swift */,
 				4B34FE29212AD6EC0048234D /* MasterViewController.swift */,
@@ -197,9 +204,26 @@
 			path = TryPropertyAnimator;
 			sourceTree = "<group>";
 		};
+		4B810B00212CACF9005EA7B1 /* InView */ = {
+			isa = PBXGroup;
+			children = (
+				4B810B01212CAD0C005EA7B1 /* Basic */,
+			);
+			path = InView;
+			sourceTree = "<group>";
+		};
+		4B810B01212CAD0C005EA7B1 /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				4B810B02212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
 		4B8FBF99212AD3900097DB6B = {
 			isa = PBXGroup;
 			children = (
+				4B810AFF212CA1F8005EA7B1 /* README.md */,
 				4B8FBFA5212AD3900097DB6B /* Bound */,
 				4B294B54212AD44C007DC18D /* Bound-Demo */,
 				4B8FBFA4212AD3900097DB6B /* Products */,
@@ -344,8 +368,10 @@
 			files = (
 				4B34FE2F212AD6ED0048234D /* MatchingTransitionViewController.swift in Sources */,
 				4B34FE2E212AD6ED0048234D /* MasterViewController.swift in Sources */,
+				4B810B03212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift in Sources */,
 				4B294B68212AD468007DC18D /* ViewController.swift in Sources */,
 				4B574F11212AD7D6005DCFBE /* AppDelegate.swift in Sources */,
+				4B810B05212CAD35005EA7B1 /* ViewControllerBase.swift in Sources */,
 				4B34FE2C212AD6ED0048234D /* TryUIViewPropertyAnimatorViewController.swift in Sources */,
 				4B34FE2D212AD6ED0048234D /* MatchingTransitionTargetViewController.swift in Sources */,
 			);

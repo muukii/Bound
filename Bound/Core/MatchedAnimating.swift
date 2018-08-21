@@ -37,7 +37,7 @@ public enum MatchedAnimations {
         let _targetSnapshotView = targetSnapshot.build()
 
         context.sourceView.alpha = 0
-        context.targetView.alpha = 1
+        context.targetView.alpha = 0
 
         context.containerView.addSubview(_sourceSnapshotView)
         context.containerView.addSubview(_targetSnapshotView)

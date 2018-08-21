@@ -18,6 +18,7 @@ public final class Animator {
   private let postProcess: [Action]
   private var transitionGroups: [(TransitionGroupFactory, Completion)] = []
   private var errorHandlers: [(Error) -> Void] = []
+  public private(set) var isRunning: Bool = false
 
   ///
   ///
@@ -53,9 +54,75 @@ public final class Animator {
     return self
   }
 
+  public func run() {
+
+    isRunning = true
+
+    do {
+      self.preProcess.forEach { $0.execute() }
+
+      let groups = try self.transitionGroups.map { (try $0.0(), $0.1) }
+
+      groups.forEach {
+        $0.0.applyBeforeProcess()
+      }
+
+      let wholeGroup = DispatchGroup()
+
+      groups.forEach {
+
+        wholeGroup.enter()
+
+        let (transitionGroup, completion) = $0
+        let animatorsGroup = DispatchGroup()
+        let animators = transitionGroup.run()
+
+        animators.forEach {
+          animatorsGroup.enter()
+          $0.addCompletion { _ in
+            animatorsGroup.leave()
+          }
+        }
+
+        animatorsGroup.notify(queue: .main) {
+
+          /**
+           Animations did finish
+           */
+
+          UIView.performWithoutAnimation {
+            transitionGroup.applyAfterProcess()
+          }
+
+          completion()
+
+          wholeGroup.leave()
+        }
+      }
+
+      wholeGroup.notify(queue: .main) {
+
+        /**
+         Animations did finish
+         */
+
+        UIView.performWithoutAnimation {
+          self.postProcess.forEach { $0.execute() }
+        }
+        self.isRunning = false
+      }
+
+    } catch {
+      self.errorHandlers.forEach { $0(error) }
+      isRunning = false
+    }
+  }
+
   public func run(
     in transitionContext: UIViewControllerContextTransitioning
     ) {
+
+    isRunning = true
 
     DispatchQueue.main.async {
 
@@ -148,10 +215,12 @@ public final class Animator {
           UIView.performWithoutAnimation {
             self.postProcess.forEach { $0.execute() }
           }
+          self.isRunning = false
         }
       } catch {
         avoidFlickerSnapshot.removeFromSuperview()
         self.errorHandlers.forEach { $0(error) }
+        self.isRunning = false
       }
 
     }
