@@ -40,9 +40,9 @@ final class TryUIViewPropertyAnimatorViewController : UIViewController {
 
   override func viewWillDisappear(_ animated: Bool) {
 
-    animators.forEach {
-      $0.stopAnimation(true)
-    }
+//    animators.forEach {
+//      $0.stopAnimation(true)
+//    }
 
     super.viewWillDisappear(animated)
   }
@@ -52,7 +52,7 @@ final class TryUIViewPropertyAnimatorViewController : UIViewController {
     animators = []
 
     do {
-      let animator = UIViewPropertyAnimator(duration: 2, dampingRatio: 0.3)
+      let animator = UIViewPropertyAnimator(duration: 10, dampingRatio: 0.3)
 
       animator.addAnimations({
         self.boxView.transform = .init(translationX: -100, y: 0)
