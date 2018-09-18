@@ -13,7 +13,7 @@ public final class AutomatedPopTransitionController : AutomatedTransitionControl
 
   public override init(
     fallbackTransitionController: UIViewControllerAnimatedTransitioning = BasicNavigationTransitionController(operation: .pop),
-    setupAnimation: @escaping (Animator, NotifyTransitionCompleted) -> Void
+    setupAnimation: @escaping SetupAnimation
     ) {
 
     super.init(
@@ -42,15 +42,20 @@ public final class AutomatedPopTransitionController : AutomatedTransitionControl
 
       let animator = Animator()
 
-      self.setupAnimation(animator, {
-        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+      let container = Container.init(
+        animator: animator,
+        transitionContext: transitionContext,
+        completion: {
+          transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
       })
+
+      self.setupAnimation(container)
 
       animator.addErrorHandler { (error) in
         self.fallbackTransitionController.animateTransition(using: transitionContext)
       }
 
-      animator.run(in: transitionContext)
+      animator.run(in: transitionContext.containerView)
     }
 
   }

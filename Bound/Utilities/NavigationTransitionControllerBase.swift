@@ -10,9 +10,9 @@ import UIKit
 
 open class NavigationTransitionControllerBase : NSObject, UIViewControllerAnimatedTransitioning {
 
-  public let operation: UINavigationControllerOperation
+  public let operation: UINavigationController.Operation
 
-  public init(operation: UINavigationControllerOperation) {
+  public init(operation: UINavigationController.Operation) {
     self.operation = operation
     super.init()
   }

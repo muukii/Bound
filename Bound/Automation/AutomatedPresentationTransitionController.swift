@@ -13,7 +13,7 @@ public final class AutomatedPresentationTransitionController : AutomatedTransiti
 
   public override init(
     fallbackTransitionController: UIViewControllerAnimatedTransitioning = BasicModalPresentationTransitionController(operation: .presentation),
-    setupAnimation: @escaping (Animator, NotifyTransitionCompleted) -> Void
+    setupAnimation: @escaping SetupAnimation
     ) {
 
     super.init(
@@ -38,18 +38,25 @@ public final class AutomatedPresentationTransitionController : AutomatedTransiti
 
     fromViewController.beginAppearanceTransition(false, animated: true)
 
+    containerView.addSubview(toView)
+
     let animator = Animator()
 
-    setupAnimation(animator, {
-      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-      fromViewController.endAppearanceTransition()
+    let container = Container.init(
+      animator: animator,
+      transitionContext: transitionContext,
+      completion: {
+        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        fromViewController.endAppearanceTransition()
     })
+
+    setupAnimation(container)
 
     animator.addErrorHandler { (error) in
       self.fallbackTransitionController.animateTransition(using: transitionContext)
     }
 
-    animator.run(in: transitionContext)
+    animator.run(in: transitionContext.containerView)
 
   }
 }

@@ -13,14 +13,32 @@ open class AutomatedTransitionControllerBase : NSObject {
 
   public typealias NotifyTransitionCompleted = () -> Void
 
-  public typealias TransitionGroupFactory = (_ context: UIViewControllerContextTransitioning) throws -> TransitionGroup
+  public struct Container {
 
-  let setupAnimation: (Animator, NotifyTransitionCompleted) -> Void
+    public let animator: Animator
+    public let transitionContext: UIViewControllerContextTransitioning
+    private let _completion: NotifyTransitionCompleted
+
+    init(animator: Animator, transitionContext: UIViewControllerContextTransitioning, completion: @escaping NotifyTransitionCompleted) {
+
+      self.animator = animator
+      self.transitionContext = transitionContext
+      self._completion = completion
+    }
+
+    public func notifyTransitionCompleted() {
+      _completion()
+    }
+  }
+
+  public typealias SetupAnimation = (Container) -> Void
+
+  let setupAnimation: SetupAnimation
   let fallbackTransitionController: UIViewControllerAnimatedTransitioning
 
   public init(
     fallbackTransitionController: UIViewControllerAnimatedTransitioning,
-    setupAnimation: @escaping (Animator, NotifyTransitionCompleted) -> Void
+    setupAnimation: @escaping SetupAnimation
     ) {
 
     self.fallbackTransitionController = fallbackTransitionController

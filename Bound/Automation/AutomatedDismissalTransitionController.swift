@@ -13,7 +13,7 @@ public final class AutomatedDismissalTransitionController : AutomatedTransitionC
 
   public override init(
     fallbackTransitionController: UIViewControllerAnimatedTransitioning = BasicModalPresentationTransitionController(operation: .dismissable),
-    setupAnimation: @escaping (Animator, NotifyTransitionCompleted) -> Void
+    setupAnimation: @escaping SetupAnimation
     ) {
 
     super.init(
@@ -37,16 +37,21 @@ public final class AutomatedDismissalTransitionController : AutomatedTransitionC
 
     let animator = Animator()
 
-    setupAnimation(animator, {
-      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-      toViewController.endAppearanceTransition()
+    let container = Container.init(
+      animator: animator,
+      transitionContext: transitionContext,
+      completion: {
+        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        toViewController.endAppearanceTransition()
     })
+
+    setupAnimation(container)
 
     animator.addErrorHandler { (error) in
       self.fallbackTransitionController.animateTransition(using: transitionContext)
     }
 
-    animator.run(in: transitionContext)
+    animator.run(in: transitionContext.containerView)
 
   }
 
