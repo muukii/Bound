@@ -13,14 +13,12 @@ public final class AutomatedPresentationTransitionController : AutomatedTransiti
 
   public override init(
     fallbackTransitionController: UIViewControllerAnimatedTransitioning = BasicModalPresentationTransitionController(operation: .presentation),
-    transitionGroupFactory: @escaping TransitionGroupFactory,
-    alongsideTransitionGroupFactory: TransitionGroupFactory? = nil
+    setupAnimation: @escaping (Animator, NotifyTransitionCompleted) -> Void
     ) {
 
     super.init(
       fallbackTransitionController: fallbackTransitionController,
-      transitionGroupFactory: transitionGroupFactory,
-      alongsideTransitionGroupFactory: alongsideTransitionGroupFactory
+      setupAnimation: setupAnimation
     )
   }
 
@@ -38,32 +36,14 @@ public final class AutomatedPresentationTransitionController : AutomatedTransiti
         preconditionFailure("Something went wrong on UIKit")
     }
 
-    let animator = Animator(
-      preProcess: [
-        .init {
-          fromViewController.beginAppearanceTransition(false, animated: true)
-          containerView.addSubview(toView)
-        }
-      ],
-      postProcess: []
-    )
+    fromViewController.beginAppearanceTransition(false, animated: true)
 
-    if let alongsideTransitionGroupFactory = alongsideTransitionGroupFactory {
-      animator.add(
-        transitionGroupFactory: {
-          try alongsideTransitionGroupFactory(transitionContext)
-      },
-        completion: {})
-    }
+    let animator = Animator()
 
-    animator.add(
-      transitionGroupFactory: {
-        try self.transitionGroupFactory(transitionContext)
-    }) {
-
+    setupAnimation(animator, {
       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
       fromViewController.endAppearanceTransition()
-    }
+    })
 
     animator.addErrorHandler { (error) in
       self.fallbackTransitionController.animateTransition(using: transitionContext)

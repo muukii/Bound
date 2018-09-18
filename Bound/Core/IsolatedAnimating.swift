@@ -8,114 +8,168 @@
 
 import UIKit
 
-public protocol IsolatedAnimating {
-  func apply(to view: UIView, in step: TransitionStep)
-}
+@available(iOS 10, *)
+public struct ValueAnimation<T : UIView> : Animating {
 
-public struct AnonymousIsolatedAnimation : IsolatedAnimating {
+  public struct ChangeSet<T : UIView> {
 
-  private let _apply: (UIView, TransitionStep) -> Void
+    private let _pre: (T) -> Void
+    private let _apply: (T) -> Void
+    private let _post: (T) -> Void
 
-  public init(
-    apply: @escaping (UIView, TransitionStep) -> Void
-    ) {
-    self._apply = apply
+    public init<S>(
+      target: ReferenceWritableKeyPath<T, S>,
+      pre: @escaping @autoclosure () -> S? = nil,
+      to: @escaping @autoclosure () -> S,
+      post: @escaping @autoclosure () -> S? = nil
+      ) {
+
+      self._pre = { view in
+        if let pre = pre() {
+          view[keyPath: target] = pre
+        }
+      }
+
+      self._apply = { view in
+        view[keyPath: target] = to()
+      }
+
+      self._post = { view in
+        if let post = post() {
+          view[keyPath: target] = post
+        }
+      }
+
+    }
+
+    func preProcess(target: T) {
+      _pre(target)
+    }
+
+    func apply(target: T) {
+      _apply(target)
+    }
+
+    func postProcess(target: T) {
+      _post(target)
+    }
   }
 
-  public init<V>(
-    keyPath: ReferenceWritableKeyPath<UIView, V>,
-    preProcess: @autoclosure @escaping () -> V?,
-    apply: @autoclosure @escaping () -> V,
-    postProcess: @autoclosure @escaping () -> V?
-    ) {
+  public let targets: [T]
+  public let changes: [ChangeSet<T>]
+  public let parameter: AnimatonParameter
+  public let delay: TimeInterval
 
-    self.init { view, step in
-      switch step {
-      case .before:
-        if let value = preProcess() {
-          view[keyPath: keyPath] = value
-        }
-      case .main:
-        view[keyPath: keyPath] = apply()
-      case .after:
-        if let value = postProcess() {
-          view[keyPath: keyPath] = value
+  public init(
+    targets: [T?],
+    changes: [ChangeSet<T>],
+    parameter: AnimatonParameter,
+    delay: TimeInterval = 0
+    ) {
+    self.targets = targets.compactMap { $0 }
+    self.changes = changes
+    self.parameter = parameter
+    self.delay = delay
+  }
+
+  public func preProcess() {
+
+    targets.forEach { target in
+      changes.forEach { change in
+        change.preProcess(target: target)
+      }
+    }
+  }
+
+  public func make() -> AnimatorSet {
+
+    let animator = parameter.build()
+    animator.addAnimations {
+      self.targets.forEach { target in
+        self.changes.forEach { change in
+          change.apply(target: target)
         }
       }
     }
 
+    return AnimatorSet.init(coldAnimator: animator, delay: delay)
   }
 
-  public func apply(to view: UIView, in step: TransitionStep) {
-    _apply(view, step)
+  public func postProcess() {
+    targets.forEach { target in
+      changes.forEach { change in
+        change.postProcess(target: target)
+      }
+    }
   }
 }
 
-/// Alpha Controls
 @available(iOS 10, *)
-public enum IsolatedAnimations {}
+extension ValueAnimation.ChangeSet {
+  public static var hidden: ValueAnimation.ChangeSet<T> {
+    return .init(
+      target: \.isHidden,
+      pre: false,
+      to: true,
+      post: false
+    )
+  }
 
-@available(iOS 10, *)
-extension IsolatedAnimations {
-  public static let hidden: AnonymousIsolatedAnimation = .init(
-    keyPath: \.isHidden,
-    preProcess: false,
-    apply: true,
-    postProcess: false
-  )
+  public static var fadeIn: ValueAnimation.ChangeSet<T> {
+    return .init(
+      target: \.alpha,
+      pre: 0,
+      to: 1,
+      post: 1
+    )
+  }
 
-  public static let fadeIn: AnonymousIsolatedAnimation = .init(
-    keyPath: \.alpha,
-    preProcess: 0,
-    apply: 1,
-    postProcess: 1
-  )
-
-  public static let fadeOut: AnonymousIsolatedAnimation = .init(
-    keyPath: \.alpha,
-    preProcess: 1,
-    apply: 0,
-    postProcess: 1
-  )
+  public static var fadeOut: ValueAnimation.ChangeSet<T> {
+    return .init(
+      target: \.alpha,
+      pre: 1,
+      to: 0,
+      post: 1
+    )
+  }
 }
 
-/// Transformations
 @available(iOS 10, *)
-extension IsolatedAnimations {
-
-  public static func transform(to: CGAffineTransform) -> AnonymousIsolatedAnimation {
+extension ValueAnimation.ChangeSet {
+  public static func transform(to: CGAffineTransform) -> ValueAnimation.ChangeSet<T> {
     return
       .init(
-        keyPath: \.transform,
-        preProcess: nil,
-        apply: to,
-        postProcess: .identity
+        target: \.transform,
+        pre: nil,
+        to: to,
+        post: .identity
     )
   }
 
-  public static func transform(from: CGAffineTransform) -> AnonymousIsolatedAnimation {
+  public static func transform(from: CGAffineTransform) -> ValueAnimation.ChangeSet<T> {
     return
       .init(
-        keyPath: \.transform,
-        preProcess: from,
-        apply: .identity,
-        postProcess: .identity
+        target: \.transform,
+        pre: from,
+        to: .identity,
+        post: .identity
     )
   }
 
-  public static func translateY(to: CGFloat) -> AnonymousIsolatedAnimation {
+  public static func translateY(to: CGFloat) -> ValueAnimation.ChangeSet<T> {
     return transform(to: .init(translationX: 0, y: to))
   }
 
-  public static func translateX(to: CGFloat) -> AnonymousIsolatedAnimation {
+  public static func translateX(to: CGFloat) -> ValueAnimation.ChangeSet<T> {
     return transform(to: .init(translationX: to, y: 0))
   }
 
-  public static func translateY(from: CGFloat) -> AnonymousIsolatedAnimation {
+  public static func translateY(from: CGFloat) -> ValueAnimation.ChangeSet<T> {
     return transform(from: .init(translationX: 0, y: from))
   }
 
-  public static func translateX(from: CGFloat) -> AnonymousIsolatedAnimation {
+  public static func translateX(from: CGFloat) -> ValueAnimation.ChangeSet<T> {
     return transform(from: .init(translationX: from, y: 0))
   }
+
 }

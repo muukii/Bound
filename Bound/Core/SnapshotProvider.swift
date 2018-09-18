@@ -10,7 +10,7 @@ import UIKit
 
 public struct SnapshotSource<T : UIView> {
 
-  private let source: T
+  public let source: T
 
   public init(source: T) {
     self.source = source
