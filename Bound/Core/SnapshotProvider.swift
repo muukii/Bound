@@ -54,7 +54,7 @@ public struct SnapshotSource<T : UIView> {
       let view = UIView(frame: CGRect(origin: .zero, size: size))
       view.layer.contents = image.cgImage!
       view.layer.contentsScale = scale
-      view.layer.contentsGravity = "center"
+      view.layer.contentsGravity = .center
 
       return view
     }

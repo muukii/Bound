@@ -24,7 +24,7 @@ public struct AnimatonParameter {
     }
   }
 
-  public init(duration: TimeInterval, curve: UIViewAnimationCurve) {
+  public init(duration: TimeInterval, curve: UIView.AnimationCurve) {
 
     self.duration = duration
 
