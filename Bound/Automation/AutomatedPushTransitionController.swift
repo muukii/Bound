@@ -13,14 +13,12 @@ public final class AutomatedPushTransitionController : AutomatedTransitionContro
 
   public override init(
     fallbackTransitionController: UIViewControllerAnimatedTransitioning = BasicNavigationTransitionController(operation: .push),
-    transitionGroupFactory: @escaping TransitionGroupFactory,
-    alongsideTransitionGroupFactory: TransitionGroupFactory? = nil
+    setupAnimation: @escaping (Animator, NotifyTransitionCompleted) -> Void
     ) {
 
     super.init(
       fallbackTransitionController: fallbackTransitionController,
-      transitionGroupFactory: transitionGroupFactory,
-      alongsideTransitionGroupFactory: alongsideTransitionGroupFactory
+      setupAnimation: setupAnimation
     )
   }
 
@@ -37,36 +35,22 @@ public final class AutomatedPushTransitionController : AutomatedTransitionContro
         preconditionFailure("Something went wrong on UIKit")
     }
 
-    let animator = Animator(
-      preProcess: [
-        .init {
-          containerView.addSubview(toView)
-        }
-      ],
-      postProcess: []
-    )
+    DispatchQueue.main.async {
 
-    if let alongsideTransitionGroupFactory = alongsideTransitionGroupFactory {
-      animator.add(
-        transitionGroupFactory: {
-          try alongsideTransitionGroupFactory(transitionContext)
-      },
-        completion: {})
+      containerView.addSubview(toView)
+
+      let animator = Animator()
+
+      self.setupAnimation(animator, {
+        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+      })
+
+      animator.addErrorHandler { (error) in
+        self.fallbackTransitionController.animateTransition(using: transitionContext)
+      }
+
+      animator.run(in: transitionContext)
     }
-
-    animator.add(
-      transitionGroupFactory: {
-      try self.transitionGroupFactory(transitionContext)
-    }) {
-      transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-    }
-
-    animator.addErrorHandler { (error) in
-      self.fallbackTransitionController.animateTransition(using: transitionContext)
-    }
-
-    animator.run(in: transitionContext)
-
   }
 
 }

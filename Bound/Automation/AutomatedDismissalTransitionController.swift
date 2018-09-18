@@ -13,15 +13,13 @@ public final class AutomatedDismissalTransitionController : AutomatedTransitionC
 
   public override init(
     fallbackTransitionController: UIViewControllerAnimatedTransitioning = BasicModalPresentationTransitionController(operation: .dismissable),
-    transitionGroupFactory: @escaping TransitionGroupFactory,
-    alongsideTransitionGroupFactory: TransitionGroupFactory? = nil
+    setupAnimation: @escaping (Animator, NotifyTransitionCompleted) -> Void
     ) {
 
     super.init(
       fallbackTransitionController: fallbackTransitionController,
-      transitionGroupFactory: transitionGroupFactory,
-      alongsideTransitionGroupFactory: alongsideTransitionGroupFactory
-    )
+      setupAnimation: setupAnimation
+      )
   }
 
   public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -35,30 +33,14 @@ public final class AutomatedDismissalTransitionController : AutomatedTransitionC
         preconditionFailure("Something went wrong on UIKit")
     }
 
-    let animator = Animator(
-      preProcess: [
-        .init {
-          toViewController.beginAppearanceTransition(true, animated: true)
-        }
-      ],
-      postProcess: []
-    )
+    toViewController.beginAppearanceTransition(true, animated: true)
 
-    if let alongsideTransitionGroupFactory = alongsideTransitionGroupFactory {
-      animator.add(
-        transitionGroupFactory: {
-          try alongsideTransitionGroupFactory(transitionContext)
-      },
-        completion: {})
-    }
+    let animator = Animator()
 
-    animator.add(
-      transitionGroupFactory: {
-        try self.transitionGroupFactory(transitionContext)
-    }) {      
+    setupAnimation(animator, {
       transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
       toViewController.endAppearanceTransition()
-    }
+    })
 
     animator.addErrorHandler { (error) in
       self.fallbackTransitionController.animateTransition(using: transitionContext)

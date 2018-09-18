@@ -11,21 +11,20 @@ import UIKit
 @available(iOS 10, *)
 open class AutomatedTransitionControllerBase : NSObject {
 
+  public typealias NotifyTransitionCompleted = () -> Void
+
   public typealias TransitionGroupFactory = (_ context: UIViewControllerContextTransitioning) throws -> TransitionGroup
 
-  let transitionGroupFactory: TransitionGroupFactory
-  let alongsideTransitionGroupFactory: TransitionGroupFactory?
+  let setupAnimation: (Animator, NotifyTransitionCompleted) -> Void
   let fallbackTransitionController: UIViewControllerAnimatedTransitioning
 
   public init(
     fallbackTransitionController: UIViewControllerAnimatedTransitioning,
-    transitionGroupFactory: @escaping TransitionGroupFactory,
-    alongsideTransitionGroupFactory: TransitionGroupFactory? = nil
+    setupAnimation: @escaping (Animator, NotifyTransitionCompleted) -> Void
     ) {
 
     self.fallbackTransitionController = fallbackTransitionController
-    self.transitionGroupFactory = transitionGroupFactory
-    self.alongsideTransitionGroupFactory = alongsideTransitionGroupFactory
+    self.setupAnimation = setupAnimation
   }
 
 }

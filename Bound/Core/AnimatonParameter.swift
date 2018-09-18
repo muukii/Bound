@@ -1,6 +1,6 @@
 //
 //  PropertyAnimatorBuilder.swift
-//  Transition
+//  Bound
 //
 //  Created by muukii on 7/11/18.
 //  Copyright © 2018 eure. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 
 @available(iOS 10, *)
-public struct PropertyAnimatorBuilder {
+public struct AnimatonParameter {
 
   let duration: TimeInterval
 
@@ -45,7 +45,7 @@ public struct PropertyAnimatorBuilder {
   public init(duration: TimeInterval, dampingRatio ratio: CGFloat) {
 
     self.duration = duration
-    
+
     self._build = {
       UIViewPropertyAnimator(duration: duration, dampingRatio: ratio)
     }
@@ -59,7 +59,7 @@ public struct PropertyAnimatorBuilder {
 }
 
 @available(iOS 10, *)
-extension PropertyAnimatorBuilder {
+extension AnimatonParameter {
 
-  public static let immediately: PropertyAnimatorBuilder = .init(duration: 0, curve: .linear)
+  public static let immediately: AnimatonParameter = .init(duration: 0, curve: .linear)
 }
