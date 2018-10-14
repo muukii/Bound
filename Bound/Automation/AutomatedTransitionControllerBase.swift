@@ -15,7 +15,7 @@ open class AutomatedTransitionControllerBase : NSObject {
 
   public struct Container {
 
-    public let animator: Animator
+    public unowned let animator: Animator
     public let transitionContext: UIViewControllerContextTransitioning
     private let _completion: NotifyTransitionCompleted
 

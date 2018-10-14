@@ -21,22 +21,18 @@
 		4B294BBC212AD632007DC18D /* NavigationTransitionControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BA5212AD632007DC18D /* NavigationTransitionControllerBase.swift */; };
 		4B294BBD212AD632007DC18D /* LayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BA6212AD632007DC18D /* LayerView.swift */; };
 		4B294BBE212AD632007DC18D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BA7212AD632007DC18D /* Utils.swift */; };
-		4B294BBF212AD632007DC18D /* PropertyAnimatorBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BA9212AD632007DC18D /* PropertyAnimatorBuilder.swift */; };
-		4B294BC0212AD632007DC18D /* TransitionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BAA212AD632007DC18D /* TransitionGroup.swift */; };
-		4B294BC1212AD632007DC18D /* SnapshotProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BAB212AD632007DC18D /* SnapshotProvider.swift */; };
-		4B294BC2212AD632007DC18D /* MatchedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BAC212AD632007DC18D /* MatchedTransition.swift */; };
-		4B294BC3212AD632007DC18D /* IsolatedAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BAD212AD632007DC18D /* IsolatedAnimating.swift */; };
-		4B294BC4212AD632007DC18D /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BAE212AD632007DC18D /* Animator.swift */; };
-		4B294BC5212AD632007DC18D /* IsolatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BAF212AD632007DC18D /* IsolatedTransition.swift */; };
-		4B294BC6212AD632007DC18D /* MatchedAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BB0212AD632007DC18D /* MatchedAnimating.swift */; };
-		4B294BC7212AD632007DC18D /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BB1212AD632007DC18D /* Transition.swift */; };
-		4B294BC8212AD632007DC18D /* MatchedAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B294BB2212AD632007DC18D /* MatchedAnimationContext.swift */; };
 		4B294BC9212AD72B007DC18D /* Bound.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8FBFA3212AD3900097DB6B /* Bound.framework */; };
 		4B294BCA212AD72B007DC18D /* Bound.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8FBFA3212AD3900097DB6B /* Bound.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B34FE2C212AD6ED0048234D /* TryUIViewPropertyAnimatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B34FE27212AD6EC0048234D /* TryUIViewPropertyAnimatorViewController.swift */; };
 		4B34FE2D212AD6ED0048234D /* MatchingTransitionTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B34FE28212AD6EC0048234D /* MatchingTransitionTargetViewController.swift */; };
 		4B34FE2E212AD6ED0048234D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B34FE29212AD6EC0048234D /* MasterViewController.swift */; };
 		4B34FE2F212AD6ED0048234D /* MatchingTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B34FE2A212AD6EC0048234D /* MatchingTransitionViewController.swift */; };
+		4B4D2AF72172FA9800B26B1F /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF02172FA9800B26B1F /* Animator.swift */; };
+		4B4D2AF82172FA9800B26B1F /* AnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF12172FA9800B26B1F /* AnimationContext.swift */; };
+		4B4D2AF92172FA9800B26B1F /* SnapshotProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF22172FA9800B26B1F /* SnapshotProvider.swift */; };
+		4B4D2AFA2172FA9800B26B1F /* ValueAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF32172FA9800B26B1F /* ValueAnimation.swift */; };
+		4B4D2AFB2172FA9800B26B1F /* MatchedAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF42172FA9800B26B1F /* MatchedAnimations.swift */; };
+		4B4D2AFD2172FA9800B26B1F /* AnimatonParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF62172FA9800B26B1F /* AnimatonParameter.swift */; };
 		4B574F11212AD7D6005DCFBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B574F10212AD7D6005DCFBE /* AppDelegate.swift */; };
 		4B574F14212AD867005DCFBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B574F12212AD867005DCFBE /* Main.storyboard */; };
 		4B810B03212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B810B02212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift */; };
@@ -85,20 +81,16 @@
 		4B294BA5212AD632007DC18D /* NavigationTransitionControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationTransitionControllerBase.swift; sourceTree = "<group>"; };
 		4B294BA6212AD632007DC18D /* LayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerView.swift; sourceTree = "<group>"; };
 		4B294BA7212AD632007DC18D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		4B294BA9212AD632007DC18D /* PropertyAnimatorBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyAnimatorBuilder.swift; sourceTree = "<group>"; };
-		4B294BAA212AD632007DC18D /* TransitionGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionGroup.swift; sourceTree = "<group>"; };
-		4B294BAB212AD632007DC18D /* SnapshotProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotProvider.swift; sourceTree = "<group>"; };
-		4B294BAC212AD632007DC18D /* MatchedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchedTransition.swift; sourceTree = "<group>"; };
-		4B294BAD212AD632007DC18D /* IsolatedAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsolatedAnimating.swift; sourceTree = "<group>"; };
-		4B294BAE212AD632007DC18D /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
-		4B294BAF212AD632007DC18D /* IsolatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsolatedTransition.swift; sourceTree = "<group>"; };
-		4B294BB0212AD632007DC18D /* MatchedAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchedAnimating.swift; sourceTree = "<group>"; };
-		4B294BB1212AD632007DC18D /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
-		4B294BB2212AD632007DC18D /* MatchedAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchedAnimationContext.swift; sourceTree = "<group>"; };
 		4B34FE27212AD6EC0048234D /* TryUIViewPropertyAnimatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TryUIViewPropertyAnimatorViewController.swift; sourceTree = "<group>"; };
 		4B34FE28212AD6EC0048234D /* MatchingTransitionTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingTransitionTargetViewController.swift; sourceTree = "<group>"; };
 		4B34FE29212AD6EC0048234D /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		4B34FE2A212AD6EC0048234D /* MatchingTransitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchingTransitionViewController.swift; sourceTree = "<group>"; };
+		4B4D2AF02172FA9800B26B1F /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		4B4D2AF12172FA9800B26B1F /* AnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationContext.swift; sourceTree = "<group>"; };
+		4B4D2AF22172FA9800B26B1F /* SnapshotProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotProvider.swift; sourceTree = "<group>"; };
+		4B4D2AF32172FA9800B26B1F /* ValueAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueAnimation.swift; sourceTree = "<group>"; };
+		4B4D2AF42172FA9800B26B1F /* MatchedAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchedAnimations.swift; sourceTree = "<group>"; };
+		4B4D2AF62172FA9800B26B1F /* AnimatonParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatonParameter.swift; sourceTree = "<group>"; };
 		4B574F10212AD7D6005DCFBE /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B574F13212AD867005DCFBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B810AFF212CA1F8005EA7B1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -182,16 +174,12 @@
 		4B294BA8212AD632007DC18D /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				4B294BA9212AD632007DC18D /* PropertyAnimatorBuilder.swift */,
-				4B294BAA212AD632007DC18D /* TransitionGroup.swift */,
-				4B294BAB212AD632007DC18D /* SnapshotProvider.swift */,
-				4B294BAC212AD632007DC18D /* MatchedTransition.swift */,
-				4B294BAD212AD632007DC18D /* IsolatedAnimating.swift */,
-				4B294BAE212AD632007DC18D /* Animator.swift */,
-				4B294BAF212AD632007DC18D /* IsolatedTransition.swift */,
-				4B294BB0212AD632007DC18D /* MatchedAnimating.swift */,
-				4B294BB1212AD632007DC18D /* Transition.swift */,
-				4B294BB2212AD632007DC18D /* MatchedAnimationContext.swift */,
+				4B4D2AF62172FA9800B26B1F /* AnimatonParameter.swift */,
+				4B4D2AF02172FA9800B26B1F /* Animator.swift */,
+				4B4D2AF42172FA9800B26B1F /* MatchedAnimations.swift */,
+				4B4D2AF22172FA9800B26B1F /* SnapshotProvider.swift */,
+				4B4D2AF12172FA9800B26B1F /* AnimationContext.swift */,
+				4B4D2AF32172FA9800B26B1F /* ValueAnimation.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -381,26 +369,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B294BC7212AD632007DC18D /* Transition.swift in Sources */,
-				4B294BC5212AD632007DC18D /* IsolatedTransition.swift in Sources */,
+				4B4D2AF72172FA9800B26B1F /* Animator.swift in Sources */,
 				4B294BB3212AD632007DC18D /* BasicNavigationTransitionController.swift in Sources */,
 				4B294BB6212AD632007DC18D /* AutomatedPushTransitionController.swift in Sources */,
-				4B294BC0212AD632007DC18D /* TransitionGroup.swift in Sources */,
-				4B294BC2212AD632007DC18D /* MatchedTransition.swift in Sources */,
-				4B294BC3212AD632007DC18D /* IsolatedAnimating.swift in Sources */,
+				4B4D2AFA2172FA9800B26B1F /* ValueAnimation.swift in Sources */,
 				4B294BB5212AD632007DC18D /* ObjectStore.swift in Sources */,
-				4B294BC6212AD632007DC18D /* MatchedAnimating.swift in Sources */,
-				4B294BC8212AD632007DC18D /* MatchedAnimationContext.swift in Sources */,
-				4B294BC4212AD632007DC18D /* Animator.swift in Sources */,
 				4B294BBC212AD632007DC18D /* NavigationTransitionControllerBase.swift in Sources */,
-				4B294BBF212AD632007DC18D /* PropertyAnimatorBuilder.swift in Sources */,
 				4B294BBA212AD632007DC18D /* AutomatedDismissalTransitionController.swift in Sources */,
+				4B4D2AF92172FA9800B26B1F /* SnapshotProvider.swift in Sources */,
+				4B4D2AF82172FA9800B26B1F /* AnimationContext.swift in Sources */,
 				4B294BB4212AD632007DC18D /* BasicModalPresentationTransitionController.swift in Sources */,
 				4B294BB9212AD632007DC18D /* AutomatedPresentationTransitionController.swift in Sources */,
-				4B294BC1212AD632007DC18D /* SnapshotProvider.swift in Sources */,
+				4B4D2AFB2172FA9800B26B1F /* MatchedAnimations.swift in Sources */,
 				4B294BB8212AD632007DC18D /* AutomatedPopTransitionController.swift in Sources */,
 				4B294BBD212AD632007DC18D /* LayerView.swift in Sources */,
 				4B294BBB212AD632007DC18D /* AutomatedTransitionControllerBase.swift in Sources */,
+				4B4D2AFD2172FA9800B26B1F /* AnimatonParameter.swift in Sources */,
 				4B294BBE212AD632007DC18D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,7 +437,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "me.muukii.Bound-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -474,7 +457,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.muukii.Bound-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -531,13 +513,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -589,12 +571,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -621,7 +603,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.muukii.Bound;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -646,7 +627,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.muukii.Bound;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

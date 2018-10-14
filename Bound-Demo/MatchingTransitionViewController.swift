@@ -11,9 +11,18 @@ import UIKit
 import Bound
 
 enum TransitionStore {
-  static let fromBox = ObjectWeakStore<UIView>()
-  static let toBox = ObjectWeakStore<UIView>()
-  static let toView = ObjectWeakStore<UIView>()
+
+  final class Box {
+
+    weak var fromBox: UIView?
+    weak var toBox: UIView?
+    weak var toView: UIView?
+
+    init() {}
+  }
+
+  static let box: Box = .init()
+
 }
 
 final class MatchingTransitionViewController : UIViewController {
@@ -28,7 +37,7 @@ final class MatchingTransitionViewController : UIViewController {
 //    toBox.isHidden = true
 
     navigationController?.delegate = self
-    TransitionStore.fromBox.value = fromBox
+    TransitionStore.box.fromBox = fromBox
 //    transitioningDelegate = self
   }
 
@@ -56,34 +65,45 @@ extension MatchingTransitionViewController : UINavigationControllerDelegate {
 
   func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-    let automated = AutomatedPushTransitionController(
-      transitionGroupFactory: { context -> TransitionGroup in
-        TransitionGroup(
-          matchedTransitions: [
-            MatchedTransition.init(
-              source: try TransitionStore.fromBox.take(),
-              target: try TransitionStore.toBox.take(),
-              animation: MatchedAnimations.Crossfade(
-                sourceSnapshot: SnapshotSource(source: try TransitionStore.fromBox.take()).renderNormal(),
-                targetSnapshot: SnapshotSource(source: try TransitionStore.toBox.take()).renderNormal()
-              ),
-              animatorOptions: .init(duration: 0.6, dampingRatio: 0.9),
-              in: context.containerView
-            )
-          ],
-          isolatedTransitions: [
-            .init(
-              targets: [try TransitionStore.toView.take()],
-              animations: [IsolatedAnimations.fadeIn],
-              delay: 0.5,
-              animatorOptions: .init(duration: 0.3, curve: .easeOut)
-            )
-          ]
-        )
-    })
+    switch operation {
+    case .push:
+      return
+        AutomatedPushTransitionController { (container) in
 
-    return automated
-//    return TransitionController()
+          container.animator.addGroupFactory({ (context, group) in
+
+            group.add(
+              animation: MatchedAnimations.Crossfade(
+                sourceSnapshot: context.makeSnapshot(from: TransitionStore.box.fromBox!),
+                targetSnapshot: context.makeSnapshot(from: TransitionStore.box.toBox!),
+                path: context.makePath(to: TransitionStore.box.toBox!, from: TransitionStore.box.fromBox!),
+                parameter: .init(duration: 0.5, dampingRatio: 0.9),
+                containerView: context.containerView
+              )
+            )
+
+            group.add(
+              animation: ValueAnimation.init(
+                targets: [
+                  TransitionStore.box.toView
+                ],
+                changes: [.fadeIn],
+                parameter: .init(duration: 0.3, curve: .easeOut),
+                delay: 0.5
+              )
+            )
+
+          }, completion: {
+            container.notifyTransitionCompleted()
+          })
+
+      }
+    case .pop:
+      return BasicNavigationTransitionController(operation: .pop)
+    case .none:
+      fatalError()
+    }
+    
   }
 
   func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {

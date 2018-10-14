@@ -24,31 +24,24 @@ final class InViewBasicTransitionViewController : ViewControllerBase {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    Animator(
-      preProcess: [],
-      postProcess: [
-        .init {
-          self.fromView.alpha = 0
-        }
-      ]
-      )
-      .add(transitionGroup: .init(
-        matchedTransitions: [
-          MatchedTransition.init(
-            source: fromView,
-            target: toView,
-            animation: MatchedAnimations.Crossfade(
-              sourceSnapshot: SnapshotSource(source: fromView).renderNormal(),
-              targetSnapshot: SnapshotSource(source: toView).renderNormal()
-            ),
-            animatorOptions: .init(duration: 0.5, dampingRatio: 0.9),
-            in: view
+    self.fromView.alpha = 0
+
+    Animator()
+      .addGroupFactory({ (context, group) in
+
+        group.add(animation: MatchedAnimations.Crossfade(
+          sourceSnapshot: context.makeSnapshot(from: self.fromView),
+          targetSnapshot: context.makeSnapshot(from: self.toView),
+          path: context.makePath(to: self.toView, from: self.fromView),
+          parameter: .init(duration: 0.5, dampingRatio: 0.9),
+          containerView: self.view
           )
-        ]
-      )) {
+        )
+      }) {
 
       }
-      .run()
+      .run(in: self.view)
+
 
   }
 }

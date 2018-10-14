@@ -14,7 +14,7 @@ final class MatchingTransitionTargetViewController : UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    TransitionStore.toView.value = view
-    TransitionStore.toBox.value = box
+    TransitionStore.box.toBox = view
+    TransitionStore.box.toBox = box
   }
 }

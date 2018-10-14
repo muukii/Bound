@@ -2,7 +2,7 @@
 @available(iOS 10, *)
 public class Animator {
 
-  public typealias GroupFactory = (TransitionContext, TransitionGroup) throws -> Void
+  public typealias GroupFactory = (AnimationContext, TransitionGroup) throws -> Void
   public typealias Completion = () -> Void
 
   private var groupFactories: [(GroupFactory, Completion)] = []
@@ -48,7 +48,7 @@ extension Animator {
     withShouldAvoidFlicker shouldAvoidFlicker: Bool = true
     ) {
 
-    let context = TransitionContext(containerView: containerView)
+    let context = AnimationContext(containerView: containerView)
 
     /**
      This dispatching is for transition in NavigationController.

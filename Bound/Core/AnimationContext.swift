@@ -40,12 +40,18 @@ public final class TransitionGroup {
 }
 
 @available(iOS 10.0, *)
-public final class TransitionContext {
+public final class AnimationContext {
 
   public let containerView: UIView
 
   init(containerView: UIView) {
     self.containerView = containerView
+  }
+
+  public func makeSnapshot<T: UIView>(
+    from: T
+    ) -> UIView {
+    return makeSnapshot(from: from, render: { $0.renderNormal().build() })
   }
 
   public func makeSnapshot<T: UIView, S: UIView>(
@@ -55,8 +61,6 @@ public final class TransitionContext {
 
     let source = SnapshotSource<T>(source: from)
     let view = render(source)
-    //    let center = from.convert(from.center, to: containerView)
-    //    view.center = center
 
     return view
   }
