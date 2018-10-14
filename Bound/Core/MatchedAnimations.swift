@@ -20,6 +20,11 @@ public enum MatchedAnimations {
     public let toFrame: CGRect
   }
 
+  public enum MoveMode {
+    case frame
+    case transform
+  }
+
   public final class Crossfade : Animating {
 
     public let sourceSnapshot: UIView
@@ -110,6 +115,7 @@ public enum MatchedAnimations {
     public let path: MovePath
     public let removeOnCompletion: Bool
     public let delay: TimeInterval
+    public let moveMode: MoveMode
 
     public init(
       snapshot: UIView,
@@ -117,6 +123,7 @@ public enum MatchedAnimations {
       parameter: AnimatonParameter,
       delay: TimeInterval = 0,
       containerView: UIView,
+      moveMode: MoveMode = .transform,
       removeOnCompletion: Bool = false
       ) {
 
@@ -125,6 +132,7 @@ public enum MatchedAnimations {
       self.path = path
       self.delay = delay
       self.parameter = parameter
+      self.moveMode = moveMode
       self.removeOnCompletion = removeOnCompletion
     }
 
@@ -139,10 +147,15 @@ public enum MatchedAnimations {
 
       let animator = parameter.build()
       animator.addAnimations {
-        self.snapshot.transform = TransitionUtils.makeCGAffineTransform(
-          from: self.path.fromFrame,
-          to: self.path.toFrame
-        )
+        switch self.moveMode {
+        case .frame:
+          self.snapshot.frame = self.path.toFrame
+        case .transform:          
+          self.snapshot.transform = TransitionUtils.makeCGAffineTransform(
+            from: self.path.fromFrame,
+            to: self.path.toFrame
+          )
+        }
       }
       if removeOnCompletion {
         animator.addCompletion { _ in
