@@ -99,6 +99,8 @@ extension Animator {
         }
       }
 
+      containerView.layoutIfNeeded()
+
       avoidingFlickerSnapshot?.removeFromSuperview()
 
       /**
