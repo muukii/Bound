@@ -120,7 +120,7 @@ extension ValueAnimation.ChangeSet {
       target: \.alpha,
       pre: 0,
       to: 1,
-      post: 1
+      post: nil
     )
   }
 
@@ -152,7 +152,7 @@ extension ValueAnimation.ChangeSet {
         target: \.transform,
         pre: from,
         to: .identity,
-        post: .identity
+        post: nil
     )
   }
 
