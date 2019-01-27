@@ -57,13 +57,13 @@ public struct ValueAnimation<T : UIView> : Animating {
 
   public let targets: [T]
   public let changes: [ChangeSet<T>]
-  public let parameter: AnimatonParameter
+  public let parameter: AnimationParameter
   public let delay: TimeInterval
 
   public init(
     targets: [T?],
     changes: [ChangeSet<T>],
-    parameter: AnimatonParameter,
+    parameter: AnimationParameter,
     delay: TimeInterval = 0
     ) {
     self.targets = targets.compactMap { $0 }

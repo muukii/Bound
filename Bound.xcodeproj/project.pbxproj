@@ -32,7 +32,7 @@
 		4B4D2AF92172FA9800B26B1F /* SnapshotProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF22172FA9800B26B1F /* SnapshotProvider.swift */; };
 		4B4D2AFA2172FA9800B26B1F /* ValueAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF32172FA9800B26B1F /* ValueAnimation.swift */; };
 		4B4D2AFB2172FA9800B26B1F /* MatchedAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF42172FA9800B26B1F /* MatchedAnimations.swift */; };
-		4B4D2AFD2172FA9800B26B1F /* AnimatonParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF62172FA9800B26B1F /* AnimatonParameter.swift */; };
+		4B4D2AFD2172FA9800B26B1F /* AnimationParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D2AF62172FA9800B26B1F /* AnimationParameter.swift */; };
 		4B574F11212AD7D6005DCFBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B574F10212AD7D6005DCFBE /* AppDelegate.swift */; };
 		4B574F14212AD867005DCFBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B574F12212AD867005DCFBE /* Main.storyboard */; };
 		4B810B03212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B810B02212CAD21005EA7B1 /* InViewBasicTransitionViewController.swift */; };
@@ -90,7 +90,7 @@
 		4B4D2AF22172FA9800B26B1F /* SnapshotProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotProvider.swift; sourceTree = "<group>"; };
 		4B4D2AF32172FA9800B26B1F /* ValueAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueAnimation.swift; sourceTree = "<group>"; };
 		4B4D2AF42172FA9800B26B1F /* MatchedAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchedAnimations.swift; sourceTree = "<group>"; };
-		4B4D2AF62172FA9800B26B1F /* AnimatonParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatonParameter.swift; sourceTree = "<group>"; };
+		4B4D2AF62172FA9800B26B1F /* AnimationParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationParameter.swift; sourceTree = "<group>"; };
 		4B574F10212AD7D6005DCFBE /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B574F13212AD867005DCFBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B810AFF212CA1F8005EA7B1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		4B294BA8212AD632007DC18D /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				4B4D2AF62172FA9800B26B1F /* AnimatonParameter.swift */,
+				4B4D2AF62172FA9800B26B1F /* AnimationParameter.swift */,
 				4B4D2AF02172FA9800B26B1F /* Animator.swift */,
 				4B4D2AF42172FA9800B26B1F /* MatchedAnimations.swift */,
 				4B4D2AF22172FA9800B26B1F /* SnapshotProvider.swift */,
@@ -384,7 +384,7 @@
 				4B294BB8212AD632007DC18D /* AutomatedPopTransitionController.swift in Sources */,
 				4B294BBD212AD632007DC18D /* LayerView.swift in Sources */,
 				4B294BBB212AD632007DC18D /* AutomatedTransitionControllerBase.swift in Sources */,
-				4B4D2AFD2172FA9800B26B1F /* AnimatonParameter.swift in Sources */,
+				4B4D2AFD2172FA9800B26B1F /* AnimationParameter.swift in Sources */,
 				4B294BBE212AD632007DC18D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

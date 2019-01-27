@@ -29,7 +29,7 @@ public enum MatchedAnimations {
 
     public let sourceSnapshot: UIView
     public let targetSnapshot: UIView
-    public let parameter: AnimatonParameter
+    public let parameter: AnimationParameter
     public let containerView: UIView
     public let path: MovePath
     public let removeOnCompletion: Bool
@@ -39,7 +39,7 @@ public enum MatchedAnimations {
       sourceSnapshot: UIView,
       targetSnapshot: UIView,
       path: MovePath,
-      parameter: AnimatonParameter,
+      parameter: AnimationParameter,
       delay: TimeInterval = 0,
       containerView: UIView,
       removeOnCompletion: Bool = false
@@ -110,7 +110,7 @@ public enum MatchedAnimations {
   public final class MoveSnapshot : Animating {
 
     public let snapshot: UIView
-    public let parameter: AnimatonParameter
+    public let parameter: AnimationParameter
     public let containerView: UIView
     public let path: MovePath
     public let removeOnCompletion: Bool
@@ -120,7 +120,7 @@ public enum MatchedAnimations {
     public init(
       snapshot: UIView,
       path: MovePath,
-      parameter: AnimatonParameter,
+      parameter: AnimationParameter,
       delay: TimeInterval = 0,
       containerView: UIView,
       moveMode: MoveMode = .transform,
