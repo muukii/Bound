@@ -20,21 +20,23 @@ public final class BasicModalPresentationTransitionController : NSObject, UIView
   public init(operation: Operation) {
     self.operation = operation
   }
-
+  
   public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return 0.3
   }
-
+  
   public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
     switch operation {
     case .presentation:
-
+      
+      transitionContext.viewController(forKey: .from)?.beginAppearanceTransition(false, animated: true)
+      
       let toVC = transitionContext.viewController(forKey: .to)!
       toVC.view.frame = transitionContext.finalFrame(for: toVC)
       let toView = transitionContext.view(forKey: .to)!
-
+      
       toView.transform = .init(translationX: 0, y: transitionContext.containerView.bounds.height)
-
+      
       transitionContext.containerView.addSubview(toView)
 
       UIView.animate(
@@ -47,9 +49,12 @@ public final class BasicModalPresentationTransitionController : NSObject, UIView
           toVC.view.transform = .identity
       }, completion: { finish in
         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        transitionContext.viewController(forKey: .from)?.endAppearanceTransition()
       })
 
     case .dismissable:
+
+      transitionContext.viewController(forKey: .to)?.beginAppearanceTransition(true, animated: true)
 
       let fromView = transitionContext.view(forKey: .from)!
 
@@ -62,8 +67,9 @@ public final class BasicModalPresentationTransitionController : NSObject, UIView
         animations: {
           fromView.transform = .init(translationX: 0, y: transitionContext.containerView.bounds.height)
       }, completion: { finish in
-        fromView.removeFromSuperview()
+        fromView.removeFromSuperview()        
         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        transitionContext.viewController(forKey: .to)?.endAppearanceTransition()
       })
     }
   }
