@@ -1,4 +1,13 @@
 
+/// The main object to run ainimation. To build animation, first initizalize Animator.
+///
+/// Animator defines animations and run in specified view.
+/// Supporting animations are 2 types. MatchedAninmation and ValueAnimation
+///
+/// ## MatchedAnimation
+/// MatchedAnimation is for binding between current-state to after-state smoothly.
+/// To do this, it needs to know start-rect and end-rect. So, it needs container view that run animation on.
+/// Animator get that container view from Animator.run
 @available(iOS 10, *)
 public class Animator {
 
@@ -12,7 +21,10 @@ public class Animator {
   private var errorHandlers: [(Error) -> Void] = []
 
   private weak var avoidingFlickerSnapshot: UIView?
-
+  
+  /// Initialize Animator
+  ///
+  /// Next: Call addGroupFactory
   public init() {
 
   }

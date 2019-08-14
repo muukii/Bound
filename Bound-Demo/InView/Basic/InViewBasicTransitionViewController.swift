@@ -29,12 +29,13 @@ final class InViewBasicTransitionViewController : ViewControllerBase {
     Animator()
       .addGroupFactory({ (context, group) in
 
-        group.add(animation: MatchedAnimations.Crossfade(
-          sourceSnapshot: context.makeSnapshot(from: self.fromView),
-          targetSnapshot: context.makeSnapshot(from: self.toView),
-          path: context.makePath(to: self.toView, from: self.fromView),
-          parameter: .init(duration: 0.5, dampingRatio: 0.9),
-          containerView: self.view
+        group.add(
+          animation: MatchedAnimations.Crossfade(
+            sourceSnapshot: context.makeSnapshot(from: self.fromView),
+            targetSnapshot: context.makeSnapshot(from: self.toView),
+            path: context.makePath(to: self.toView, from: self.fromView),
+            parameter: .init(duration: 0.5, dampingRatio: 0.9),
+            containerView: context.containerView
           )
         )
       }) {
