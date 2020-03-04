@@ -31,12 +31,12 @@ public final class AutomatedPresentationTransitionController : AutomatedTransiti
     let containerView = transitionContext.containerView
 
     guard
-      let fromViewController = transitionContext.viewController(forKey: .from),
+//      let fromViewController = transitionContext.viewController(forKey: .from),
       let toView = transitionContext.view(forKey: .to) else {
         preconditionFailure("Something went wrong on UIKit")
     }
 
-    fromViewController.beginAppearanceTransition(false, animated: true)
+//    fromViewController.beginAppearanceTransition(false, animated: true)
 
     containerView.addSubview(toView)
 
@@ -47,7 +47,7 @@ public final class AutomatedPresentationTransitionController : AutomatedTransiti
       transitionContext: transitionContext,
       completion: {
         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        fromViewController.endAppearanceTransition()
+//        fromViewController.endAppearanceTransition()
     })
 
     setupAnimation(container)

@@ -29,11 +29,11 @@ public final class AutomatedDismissalTransitionController : AutomatedTransitionC
   public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
     
     guard
-      let toViewController = transitionContext.viewController(forKey: .to) else {
+//      let toViewController = transitionContext.viewController(forKey: .to) else {
         preconditionFailure("Something went wrong on UIKit")
     }
 
-    toViewController.beginAppearanceTransition(true, animated: true)
+//    toViewController.beginAppearanceTransition(true, animated: true)
 
     let animator = Animator()
 
@@ -42,7 +42,7 @@ public final class AutomatedDismissalTransitionController : AutomatedTransitionC
       transitionContext: transitionContext,
       completion: {
         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        toViewController.endAppearanceTransition()
+//        toViewController.endAppearanceTransition()
     })
 
     setupAnimation(container)
