@@ -9,7 +9,7 @@
 import UIKit
 
 @available(iOS 10, *)
-public struct AnimatonParameter {
+public struct AnimationParameter {
 
   let duration: TimeInterval
 
@@ -59,7 +59,7 @@ public struct AnimatonParameter {
 }
 
 @available(iOS 10, *)
-extension AnimatonParameter {
+extension AnimationParameter {
 
-  public static let immediately: AnimatonParameter = .init(duration: 0, curve: .linear)
+  public static let immediately: AnimationParameter = .init(duration: 0, curve: .linear)
 }
